@@ -1,0 +1,26 @@
+---
+- name : testing copy module with example
+  hosts: all
+  become: yes
+  gather_facts: no
+  vars_files:
+    - vars.yaml
+  tasks:
+  - name: copying file
+    copy:
+      src: /home/ansible/devopsus/ansible.cfg
+      dest: /home/ansible/ansible.cfg
+  - name: install "{{package}}"
+    yum:
+      name: "{{package}}"
+      state: present 
+  - name: check wither git is installed or not
+    command: which git
+    register: output
+  - name: displaying output variables
+    debug:
+      var: output
+  - name: command output
+    debug:
+      msg: "{{output.stdout}}"
+...

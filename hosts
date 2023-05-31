@@ -1,0 +1,16 @@
+
+35.244.61.114 packagename=git
+
+[web]
+35.244.61.114
+34.93.193.6
+
+[web:vars]
+service=httpd
+software=java
+package=jenkins
+
+[db]
+34.93.193.6
+
+

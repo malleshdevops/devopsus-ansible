@@ -1,0 +1,19 @@
+---
+- name : testing copy module with example
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: copying file
+    copy:
+      src: /home/ansible/devopsus/ansible.cfg
+      dest: /home/ansible/ansible.cfg
+  - name: install httpd
+    yum:
+      name: httpd
+      state: present 
+  - name: starting httpd
+    service:
+      name: httpd
+      state: started
+...
