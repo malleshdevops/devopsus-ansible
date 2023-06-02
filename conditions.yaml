@@ -1,0 +1,21 @@
+- name: ansible conditions example
+  hosts: all
+  become: yes
+  tasks:
+    - name: install apache webserver
+      package:
+        name: apache2
+        state: present
+      when: (ansible_facts.distribution == "Debian" or ansible_facts.distribution == "Ubuntu")
+    - name: install httpd
+      package:
+        name: httpd
+        state: present
+      when: (ansible_facts.distribution == "CentOS" or ansible_facts.distribution == "RHEL")
+    - name: check whether the file hostname file
+      stat:
+        path: /home/ansible/hostname
+      register: filestatus
+    - name: condtion on the file status
+      command: mv hostname hostname-bkp
+      when: filestatus.stat.exists

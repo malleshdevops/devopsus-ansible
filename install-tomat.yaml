@@ -1,0 +1,19 @@
+- name: install tomcat
+  hosts: web
+  become: yes
+  ignore_unreachable: true
+  tasks:
+    - name: install tomcat
+      package:
+        name: tomcat
+        state: present
+    - name: check whether tomcat is installed or not
+      command: which tomcat
+      register: output
+      changed_when: "'CHANGED' in output.stdout"
+    - name: output
+      debug:
+        var: output
+     
+      
+

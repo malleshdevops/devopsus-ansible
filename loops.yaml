@@ -1,0 +1,34 @@
+- name: loops example
+  hosts: all
+  become: yes
+  vars_files:
+    - vars.yaml
+  vars:
+    packages:
+    - java
+    - mysql
+  tasks:
+    - name: install multiple packages
+      package:
+        name: "{{item}}"
+      loop:
+      - java
+      - git
+      - nginx
+    - name: loop with vars file
+      yum:
+        name: "{{item}}"
+        state: present
+      loop: "{{service_list}}"
+    - name: loop with variables
+      yum:
+       name: "{{item}}"
+       state: present
+      loop: "{{package}}"
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+- name: template example
+  hosts: all
+  become: yes
+  vars:
+    portnumber: 81
+    logging: warn
+  tasks:
+    - name: copying httpd.conf update file with templates
+      template:
+        src: httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf

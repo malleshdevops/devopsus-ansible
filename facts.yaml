@@ -1,0 +1,20 @@
+- name: facts example
+  hosts: db
+  gather_facts: yes
+  tasks:
+    - name: displaying the facts details
+      debug:
+        var: ansible_facts
+    - name: create a file
+      lineinfile:
+        path: /home/ansible/hostname
+        create: yes
+        line: "{{ansible_hostname}}"
+    - name: facts specific variables display
+      debug:
+        msg:
+        - "{{ansible_facts.distribution}}"
+        - "{{ansible_facts.default_ipv4.address}}"
+        - "{{ansible_facts.kernel}}"
+    
+        

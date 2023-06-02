@@ -1,0 +1,10 @@
+- name: vault example
+  hosts: all
+  vars_files:
+    - /home/ansible/devopsus/pass.txt
+  tasks:
+    - name: writing the credentials in remote file
+      lineinfile:
+        path: /home/ansible/devops-vault.txt
+        create: yes
+        line: "{{dbuser}} :{{dbpass}}"
