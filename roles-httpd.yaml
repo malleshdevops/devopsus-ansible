@@ -1,0 +1,9 @@
+- name: executing httpd roles
+  hosts: all
+  become: yes
+  vars:
+    portnumber: 9000
+  roles:
+    - httpd
+    - tomcat
+    - mysql

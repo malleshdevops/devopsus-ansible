@@ -1,5 +1,5 @@
 package: nginx
 service_list:
-- git
-- java
+- httpd
+- mysql
 

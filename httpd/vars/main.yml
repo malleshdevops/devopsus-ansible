@@ -1,0 +1,4 @@
+---
+# vars file for httpd
+#portnumber: 81
+#logging: debug

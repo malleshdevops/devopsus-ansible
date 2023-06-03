@@ -5,12 +5,13 @@
   tasks:
     - name: install tomcat
       package:
-        name: tomcat
+        name: tomcat123
         state: present
     - name: check whether tomcat is installed or not
       command: which tomcat
       register: output
       changed_when: "'CHANGED' in output.stdout"
+      failed_when: "'FAILED' in output.stdout"
     - name: output
       debug:
         var: output

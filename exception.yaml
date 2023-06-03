@@ -1,0 +1,20 @@
+- name: exception handling in ansible
+  hosts: all
+  become: yes
+  vars:
+    service: httpd123
+  tasks:
+    - name: installing software
+      block:
+        - service:
+            name: "{{service}}"
+            state: started
+          register: status
+      rescue:
+        - name: execute the rescue block
+          debug:
+            var: status
+      always:
+        - name: inside always block
+          debug:
+            msg: "the services does not have an option to start"

@@ -1,0 +1,4 @@
+---
+# defaults file for httpd
+portnumber: 8080
+logging: debug

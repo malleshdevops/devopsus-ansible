@@ -1,0 +1,24 @@
+---
+# tasks file for httpd
+- name: Ensure apache is at the latest version
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+- name: ensure git is installed
+  package:
+    name: git
+    state: present
+- name: Ensure apache is running
+  service:
+    name: httpd
+    state: started
+- name: Write the apache config file
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - Restart apache
+- name: copy home.html file
+  copy:
+    src: home.html
+    dest: /var/www/html
